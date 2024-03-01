@@ -14,8 +14,18 @@ public class SwaggerConfig {
 
     @Bean
     public OpenAPI customOpenAPI() {
-        return new OpenAPI().info(new Info().title("title").version("version").description("description")).addSecurityItem(new SecurityRequirement().addList("Auth Token")).components(new Components().addSecuritySchemes("Auth Token", new SecurityScheme().name("Auth Token").type(
-                SecurityScheme.Type.HTTP).scheme("bearer")));
+        return new OpenAPI()
+                .info(new Info()
+                .title("EMS")
+                .version("version")
+                .description("API"))
+                .addSecurityItem(new SecurityRequirement()
+                 .addList("Auth Token"))
+                .components(new Components()
+                .addSecuritySchemes("Auth Token", new SecurityScheme()
+                .name("Auth Token")
+                .type(SecurityScheme.Type.HTTP)
+                .scheme("bearer")));
 
     }
 }

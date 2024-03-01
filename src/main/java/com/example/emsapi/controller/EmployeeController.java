@@ -3,6 +3,7 @@ package com.example.emsapi.controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -17,12 +18,13 @@ import com.example.emsapi.dto.ResponseDto;
 import com.example.emsapi.service.EmployeeService;
 
 @RestController
+@CrossOrigin("*")
 @RequestMapping("employee")
 public class EmployeeController {
     @Autowired
     private EmployeeService employeeService;
 
-    @GetMapping("getAll")
+    @RequestMapping("/getAll")
     public ResponseDto<List<EmployeDto>> getAll() {
         return employeeService.getAll();
     }
@@ -31,12 +33,13 @@ public class EmployeeController {
         return employeeService.save(employeeDto);
     }
 
+
     @PutMapping("update/{id}")
     public ResponseDto<String> update(@PathVariable Long id,
             @RequestBody EmployeDto employeeDto) {
         return employeeService.update(id,employeeDto);
     }
-
+     
     @DeleteMapping("delete/{id}")
     public ResponseDto<String> deleteById(@PathVariable Long id) {
         return employeeService.deleteById(id);

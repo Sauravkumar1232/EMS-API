@@ -19,12 +19,14 @@ public class WebConfig implements WebMvcConfigurer {
     
     @Bean
     CorsConfigurationSource corsConfigurationSource() {
+        
         CorsConfiguration configuration = new CorsConfiguration();
         configuration.setAllowedOriginPatterns(List.of("*"));
         configuration.setAllowedMethods(Arrays.asList("GET", "POST", "PATCH", "PUT", "DELETE", "OPTIONS", "HEAD"));
         configuration.setAllowCredentials(true);
-        configuration.setAllowedHeaders(Arrays.asList("X-Requested-With", "Origin", "Content-Type", "Accept", "Authorization"));
+        configuration.setAllowedHeaders(Arrays.asList("X-Requested-With", "Origin", "Content-Type", "Accept", "Authorization","Access-Control-Allow-Origin"));
         configuration.setMaxAge(3600L);
+        configuration.setAllowedOrigins(Arrays.asList("http://localhost:3000/employee/delete"));
         UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
         source.registerCorsConfiguration("/**", configuration);
         return source;
